@@ -1,4 +1,4 @@
-import { cn } from '@/utils/style';
+import { cn } from '@/src/utils/style';
 import type { AppProps } from 'next/app';
 import { Inter } from 'next/font/google';
 import { useState } from 'react';
