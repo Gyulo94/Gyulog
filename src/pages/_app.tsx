@@ -20,10 +20,10 @@ export default function App({ Component, pageProps }: AppProps) {
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />
-        <div className="flex flex-1 flex-col overflow-y-auto">
-          <Component className={'flex-1'} {...pageProps} />
-          <Footer />
-        </div>
+        <main className="flex flex-1 flex-col overflow-y-auto">
+          <Component {...pageProps} />
+        </main>
+        <Footer />
       </div>
     </div>
   );

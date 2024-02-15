@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="h-[2000px]">
+    <main>
       <h1>NEXTJS HELLO WORLD</h1>
     </main>
   );
