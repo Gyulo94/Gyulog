@@ -24,10 +24,12 @@ export default function App({ Component, pageProps }: AppProps) {
             isSidebarOpen={isSidebarOpen}
             setIsSidebarOpen={setIsSidebarOpen}
           />
-          <main className="flex flex-1 flex-col overflow-y-auto">
-            <Component {...pageProps} />
-          </main>
-          <Footer />
+          <div className="flex flex-1 flex-col overflow-y-auto">
+            <main className="flex flex-1 flex-col">
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </div>
         </div>
       </div>
     </QueryClientProvider>
