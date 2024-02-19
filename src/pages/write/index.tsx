@@ -1,7 +1,8 @@
+import Button from '@/src/components/Button';
 import Input from '@/src/components/Input';
 import { MarkdownEditor } from '@/src/components/Markdown';
+import { useCategories, useTags } from '@/src/utils/hooks';
 import { createClient } from '@/src/utils/supabase/client';
-import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { FormEvent, useRef, useState } from 'react';
 import ReactSelect from 'react-select/creatable';
@@ -13,21 +14,9 @@ export default function Write() {
   const titleRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const { data: existingCategories } = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const { data } = await supabase.from('Post').select('category');
-      return Array.from(new Set(data?.map((d) => d.category)));
-    },
-  });
+  const { data: existingCategories } = useCategories();
+  const { data: existingTags } = useTags();
 
-  const { data: existingTags } = useQuery({
-    queryKey: ['tags'],
-    queryFn: async () => {
-      const { data } = await supabase.from('Post').select('tags');
-      return Array.from(new Set(data?.flatMap((d) => JSON.parse(d.tags))));
-    },
-  });
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState('');
@@ -63,7 +52,7 @@ export default function Write() {
     if (data.id) router.push(`/posts/${data.id}`);
   };
   return (
-    <div className="container mx-auto flex flex-col px-4 pb-20 pt-12">
+    <div className="container flex flex-col pb-20 pt-12">
       <h1 className="mb-8 text-2xl font-medium">새로운 글</h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-3">
@@ -95,12 +84,9 @@ export default function Write() {
             onChange={(s) => setContent(s ?? '')}
           />
         </div>
-        <button
-          type="submit"
-          className="w-full mt-4 py-2 bg-gray-800 text-white rounded-md"
-        >
+        <Button type="submit" className="mt-4 w-full">
           작성하기
-        </button>
+        </Button>
       </form>
     </div>
   );
