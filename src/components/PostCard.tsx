@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Post } from '../types';
 import { cn } from '../utils/style';
 
-type PostCardProps = Omit<Post, 'tags'> & {
+export type PostCardProps = Omit<Post, 'tags'> & {
   className?: String;
 };
 const PostCard: FC<PostCardProps> = ({
