@@ -2,11 +2,49 @@ import { MarkdownViewer } from '@/src/components/Markdown';
 import { Post } from '@/src/types';
 import { createClient } from '@/src/utils/supabase/server';
 import { format } from 'date-fns';
-import { GetServerSideProps } from 'next';
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetServerSidePropsType,
+} from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type PostProps = Post;
+
+const supabase = createClient({});
+
+export const getStaticPaths = (async () => {
+  const { data } = await supabase.from('Post').select('id');
+
+  return {
+    paths: data?.map(({ id }) => ({ params: { id: id.toString() } })) ?? [],
+    fallback: 'blocking',
+  };
+}) satisfies GetStaticPaths;
+
+export const getStaticProps = (async (context) => {
+  const { data } = await supabase
+    .from('Post')
+    .select('*')
+    .eq('id', Number(context.params?.id));
+
+  if (!data || !data[0]) return { notFound: true };
+  const { id, title, category, tags, content, created_at, preview_image_url } =
+    data[0];
+
+  return {
+    props: {
+      id,
+      title,
+      category,
+      tags: JSON.parse(tags) as string[],
+      content,
+      created_at,
+      preview_image_url,
+    },
+  };
+}) satisfies GetStaticProps<Post>;
 
 export default function Post({
   id,
@@ -16,7 +54,7 @@ export default function Post({
   content,
   created_at,
   preview_image_url,
-}: PostProps) {
+}: InferGetServerSidePropsType<typeof getStaticProps>) {
   return (
     <div className="container flex flex-col pb-40 pt-20 gap-8">
       <h1 className="text-4xl font-bold">{title}</h1>
@@ -54,30 +92,3 @@ export default function Post({
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async ({
-  query,
-  req,
-}) => {
-  const { id } = query;
-
-  const supabase = createClient(req.cookies);
-
-  const { data } = await supabase.from('Post').select('*').eq('id', Number(id));
-
-  if (!data || !data[0]) return { notFound: true };
-  const { title, category, tags, content, created_at, preview_image_url } =
-    data[0];
-
-  return {
-    props: {
-      id,
-      title,
-      category,
-      tags: JSON.parse(tags) as string[],
-      content,
-      created_at,
-      preview_image_url,
-    },
-  };
-};

@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { FC, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { Post } from '../types';
 import { cn } from '../utils/style';
 import { createClient } from '../utils/supabase/client';
 import PostCard from './PostCard';
@@ -11,9 +12,15 @@ type PostListProps = {
   category?: string;
   tag?: string;
   className?: string;
+  initialPosts?: Post[];
 };
 
-const PostList: FC<PostListProps> = ({ category, tag, className }) => {
+const PostList: FC<PostListProps> = ({
+  category,
+  tag,
+  className,
+  initialPosts,
+}) => {
   const { ref, inView } = useInView();
   const {
     data: postPages,
@@ -37,10 +44,24 @@ const PostList: FC<PostListProps> = ({ category, tag, className }) => {
           nextPage: null,
         };
       return {
-        posts: data,
+        posts: data.map((post) => ({
+          ...post,
+          tags: JSON.parse(post.tags) as string[],
+        })),
         nextPage: data.length === 5 ? pageParam + 5 : null,
       };
     },
+    initialData: !!initialPosts
+      ? {
+          pages: [
+            {
+              posts: initialPosts,
+              nextPage: initialPosts.length === 5 ? 5 : null,
+            },
+          ],
+          pageParams: [0],
+        }
+      : undefined,
     initialPageParam: 0,
     getNextPageParam: (lastPage) => lastPage.nextPage,
   });
