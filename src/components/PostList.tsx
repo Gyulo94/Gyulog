@@ -1,3 +1,5 @@
+'use client';
+
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { FC, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -27,7 +29,7 @@ const PostList: FC<PostListProps> = ({
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ['posts'],
+    queryKey: ['posts', category, tag],
     queryFn: async ({ pageParam }) => {
       let request = supabase.from('Post').select('*');
 

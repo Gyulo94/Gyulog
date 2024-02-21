@@ -1,16 +1,14 @@
+'use client';
 import { cn } from '@/src/utils/style';
 import Link from 'next/link';
 import { FC } from 'react';
 import { AiFillGithub, AiFillInstagram, AiOutlineClose } from 'react-icons/ai';
 import { useCategories } from '../utils/hooks';
 import { IconButton } from './IconButton';
+import { useSidebar } from './Providers';
 
-type SidebarProps = {
-  close: () => void;
-  isOpen: boolean;
-};
-
-const Sidebar: FC<SidebarProps> = ({ close, isOpen }) => {
+const Sidebar: FC = () => {
+  const { isOpen, setIsOpen } = useSidebar();
   const { data: existingCategories } = useCategories();
 
   return (
@@ -21,7 +19,7 @@ const Sidebar: FC<SidebarProps> = ({ close, isOpen }) => {
       )}
     >
       <div className="flex justify-end lg:hidden">
-        <IconButton Icon={AiOutlineClose} onClick={close} />
+        <IconButton Icon={AiOutlineClose} onClick={() => setIsOpen(false)} />
       </div>
       <Link href="/" className="w-48 font-medium text-gray-600 hover:underline">
         홈

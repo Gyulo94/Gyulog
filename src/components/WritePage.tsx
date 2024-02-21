@@ -1,15 +1,14 @@
+'use client';
+
 import Button from '@/src/components/Button';
 import Input from '@/src/components/Input';
 import { MarkdownEditor } from '@/src/components/Markdown';
 import { useCategories, useTags } from '@/src/utils/hooks';
-import { createClient } from '@/src/utils/supabase/client';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useRef, useState } from 'react';
 import ReactSelect from 'react-select/creatable';
 
-const supabase = createClient();
-
-export default function Write() {
+export default function WritePage() {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
