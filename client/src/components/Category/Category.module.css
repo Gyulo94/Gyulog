@@ -1,0 +1,35 @@
+.Category {
+  border: 1px solid #222222;
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  flex-direction: column;
+}
+
+.Category .Title {
+  background: #222222;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.Category .MainCat {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: inherit;
+}
+
+.Category .MainCatActive {
+  padding: 10px;
+  width: 100%;
+  color: #222222;
+  text-align: center;
+  background-color: inherit;
+}
+
+.Category .MainCat:active {
+  color: #222222;
+}
