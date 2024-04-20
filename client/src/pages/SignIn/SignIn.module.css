@@ -1,0 +1,45 @@
+.SignIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 140px);
+  color: #f1f1f1;
+  padding: 50px;
+}
+
+.SignIn .Card {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #5e5e5e;
+  border-radius: 5px;
+  width: 50%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.SignIn .Card .Left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  background-image: url("https://pbs.twimg.com/media/EWrEXB6U8AUmcLO.jpg");
+  background-size: cover;
+  background-position: center;
+  border-right: 1px solid #5e5e5e;
+}
+
+.SignIn .Card .Right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 10%;
+  row-gap: 25px;
+}
+
+.SignIn .Card .Bottom a:hover {
+  text-decoration: underline;
+}
