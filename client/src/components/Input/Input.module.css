@@ -1,0 +1,17 @@
+.Input {
+  width: 100%;
+}
+
+.Input label {
+  font-size: 16px;
+}
+
+.Input input {
+  color: #f1f1f1;
+  background-color: #3e3e3e;
+  border: none;
+  font-size: 12px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
