@@ -1,0 +1,61 @@
+.BoardCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #5e5e5e;
+  border-radius: 5px;
+  width: 270px;
+  height: auto;
+  overflow: hidden;
+}
+
+a {
+  color: #f1f1f1;
+}
+
+.BoardCard .Top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #5e5e5e;
+}
+
+.BoardCard .Title {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
+}
+.BoardCard .Title:hover {
+  text-decoration: underline;
+}
+
+.BoardCard .Bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  padding-bottom: 5px;
+}
+
+.BoardCard .Bottom .Category {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.BoardCard .Bottom .Category .Separator {
+  padding: 0 5px;
+}
+
+.BoardCard .Bottom .Category .MainCat:hover {
+  text-decoration: underline;
+}
+
+.BoardCard .Bottom .Category .SubCat:hover {
+  text-decoration: underline;
+}
+
+.BoardCard .Bottom .CreatedAt {
+  color: #797979;
+  font-size: 12px;
+}
