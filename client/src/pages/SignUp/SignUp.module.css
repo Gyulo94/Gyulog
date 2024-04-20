@@ -1,0 +1,46 @@
+.SignUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 140px);
+  color: #f1f1f1;
+  padding: 50px;
+}
+
+.SignUp .Card {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #5e5e5e;
+  border-radius: 5px;
+  width: 50%;
+  height: 600px;
+  overflow: hidden;
+  flex-direction: row-reverse;
+}
+
+.SignUp .Card .Left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  background-image: url("https://assets.clip-studio.com/en-us/description/1751119/img/132fa9e582-d44c-dcb0-7426-0f375efee8.png");
+  background-size: cover;
+  background-position: center;
+  border-right: 1px solid #5e5e5e;
+}
+
+.SignUp .Card .Right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 10%;
+  row-gap: 25px;
+}
+
+.SignUp .Card .Bottom a:hover {
+  text-decoration: underline;
+}
