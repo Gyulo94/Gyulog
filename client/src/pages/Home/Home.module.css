@@ -1,0 +1,8 @@
+.Home {
+  width: 80%;
+  height: calc(100vh - 140px);
+  color: #f1f1f1;
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
